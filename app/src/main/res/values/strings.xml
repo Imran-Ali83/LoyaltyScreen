@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="app_name">LoyaltyScreen</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email Address</string>
+    <string name="phone">Phone</string>
+    <string name="submit">Submit</string>
+    <string name="invalidFirstName">Enter a valid First Name, no special characters allowed</string>
+    <string name="invalidLastName">Enter a valid last name, no special characters allowed</string>
+    <string name="invalidEmail">Enter a valid Email</string>
+    <string name="invalidPhone">Enter a valid Phone, Only allowed non numeric characters</string>
+    <string name="validated_successful">Submit Successfully</string>
+    <string name="ok">Ok</string>
+
+</resources>
