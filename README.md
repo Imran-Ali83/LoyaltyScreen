@@ -1,1 +1,3 @@
 # LoyaltyScreen
+
+This project which takes basic information about the user and then validates the information and shows a dialog if validated successfully else show an error. Before implementing the project two things were in my mind and those were the separation of logic, so easily written the test cases for the validation and wrote a clean code so I implemented the MVVM using LiveData architecture components with Data-binding. The purpose of using live data is when the data changed in the view model it's automatically updated UI as it observes those changes in the view so don't have any callback overhead. Using data binding you can directly use data and called the method of the view model in the layout.
