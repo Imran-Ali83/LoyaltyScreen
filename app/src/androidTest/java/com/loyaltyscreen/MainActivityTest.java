@@ -1,5 +1,8 @@
 package com.loyaltyscreen;
 
+import android.content.Context;
+
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.assertion.ViewAssertions;
@@ -8,6 +11,7 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -15,6 +19,14 @@ public class MainActivityTest {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mainActivityRule = new ActivityScenarioRule<>(MainActivity.class);
+
+    private Context appContext;
+
+    @Before
+    public void setUp() {
+
+        appContext = ApplicationProvider.getApplicationContext();
+    }
 
     @Test
     public void test_Empty_AllFields() {
@@ -82,8 +94,6 @@ public class MainActivityTest {
     @Test
     public void test_Error_FirstName_EditText() {
 
-        String error = "Enter a valid First Name, no special characters allowed";
-
         Espresso.onView(ViewMatchers.withId(R.id.firstName))
                 .perform(ViewActions.typeText("Imran!!"), ViewActions.closeSoftKeyboard());
 
@@ -92,14 +102,12 @@ public class MainActivityTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.firstName))
                 .check(ViewAssertions.matches(
-                        ViewMatchers.hasErrorText(error)));
+                        ViewMatchers.hasErrorText(appContext.getString(R.string.invalidFirstName))));
 
     }
 
     @Test
     public void test_Error_LastName_EditText() {
-
-        String error = "Enter a valid last name, no special characters allowed";
 
         Espresso.onView(ViewMatchers.withId(R.id.firstName))
                 .perform(ViewActions.typeText("Imran"), ViewActions.closeSoftKeyboard());
@@ -112,14 +120,12 @@ public class MainActivityTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.lastName))
                 .check(ViewAssertions.matches(
-                        ViewMatchers.hasErrorText(error)));
+                        ViewMatchers.hasErrorText(appContext.getString(R.string.invalidLastName))));
 
     }
 
     @Test
     public void test_Error_Email_EditText() {
-
-        String error = "Enter a valid Email";
 
         Espresso.onView(ViewMatchers.withId(R.id.firstName))
                 .perform(ViewActions.typeText("Imran"), ViewActions.closeSoftKeyboard());
@@ -135,14 +141,12 @@ public class MainActivityTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.email))
                 .check(ViewAssertions.matches(
-                        ViewMatchers.hasErrorText(error)));
+                        ViewMatchers.hasErrorText(appContext.getString(R.string.invalidEmail))));
 
     }
 
     @Test
     public void test_Error_Phone_EditText() {
-
-        String error = "Enter a valid Phone, Only allowed non numeric characters";
 
         Espresso.onView(ViewMatchers.withId(R.id.firstName))
                 .perform(ViewActions.typeText("Imran"), ViewActions.closeSoftKeyboard());
@@ -161,7 +165,7 @@ public class MainActivityTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.phone))
                 .check(ViewAssertions.matches(
-                        ViewMatchers.hasErrorText(error)));
+                        ViewMatchers.hasErrorText(appContext.getString(R.string.invalidPhone))));
     }
 
 
@@ -196,6 +200,7 @@ public class MainActivityTest {
 
     @After
     public void tearDown() throws Exception {
+        appContext = null;
     }
 
 
